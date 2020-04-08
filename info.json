@@ -1,0 +1,11 @@
+{
+  "name": "krastorio-vanilla-loaders",
+  "version": "0.18.1",
+  "factorio_version": "0.18",
+  "title": "Krastorio 2: Vanilla Loaders",
+  "author": "Kirazy",
+  "contact": "kirazy@live.com",
+  "description": "Reskins the Krastorio 2 loaders to match Factorio underground belts.",
+  "dependencies": [	"base >= 0.18.0",
+    "Krastorio2 >=0.9.9"]
+}
