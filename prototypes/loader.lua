@@ -175,12 +175,12 @@ for name, tier in pairs(loader_map) do
 	inputs.tint = adjust_alpha(tint_index[tier], 0.82)
 
 	-- Create explosions. Big ones. The biggest explosions. Make Michael Bay proud!
-	reskins.lib.create_explosion(name, inputs)
+	create_explosion(name, inputs)
         
 	-- Create and assign needed particles with appropriate tints
 	for particle, key in pairs(inputs.particles) do 
 		-- Create and assign the particle
-		reskins.lib.create_particle(name, inputs.base_entity, particle_index[particle], key, adjust_alpha(inputs.tint, 1)) 
+		create_particle(name, inputs.base_entity, particle_index[particle], key, adjust_alpha(inputs.tint, 1)) 
 	end
 
 	-- Reskin icons
