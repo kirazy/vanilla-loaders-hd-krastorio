@@ -145,7 +145,7 @@ local inputs =
 	icon_mipmaps = 1,
 	base_entity = "splitter",
 	particles = {["big"] = 4, ["medium"] = 1},
-	directory = "__krastorio-vanilla-loaders__",
+	directory = "__vanilla-loaders-hd-krastorio__",
 }
 
 local loader_map =
