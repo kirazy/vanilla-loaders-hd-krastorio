@@ -1,5 +1,5 @@
 -- Copyright (c) 2020 Kirazy
--- Part of Vanilla Loaders HD
+-- Part of Vanilla Loaders HD: Krastorio
 --     
 -- See LICENSE.md in the project directory for license information.
 
@@ -138,18 +138,9 @@ end
 -- ###################################################################################
 -- Reskin Krastorio's loaders
 
-local tint_index = 
-{
-	"ffc340", -- Loader          (Yellow)
-	"e31717", -- Fast Loader     (Red)
-	"43c0fa", -- Express Loader  (Blue)
-	"16f263", -- Advanced Loader (Green)
-	"a510e5", -- Superior Loader (Purple)
-}
-
 local inputs = 
 {
-	type = "loader",
+	type = "loader-1x1",
 	icon_size = 64,
 	icon_mipmaps = 1,
 	base_entity = "splitter",
@@ -159,20 +150,26 @@ local inputs =
 
 local loader_map =
 {
-	["kr-loader"] 		   = 1,
-	["kr-fast-loader"] 	   = 2,
-	["kr-express-loader"]  = 3,
-	["kr-advanced-loader"] = 4,
-	["kr-superior-loader"] = 5,
+	["kr-loader"] 		   = {1, "ffc340"},
+	["kr-fast-loader"] 	   = {2, "e31717"},
+	["kr-express-loader"]  = {3, "43c0fa"},
+	["kr-advanced-loader"] = {4, "3ade21"},
+	["kr-superior-loader"] = {5, "a30bd6"},
 }
 
 -- Reskin entities, create and assign extra details
-for name, tier in pairs(loader_map) do
+for name, map in pairs(loader_map) do
 	-- Fetch entity
 	entity = data.raw[inputs.type][name]
 
-	-- Set working tint
-	inputs.tint = adjust_alpha(tint_index[tier], 0.82)
+	-- Check if entity exists, if not, skip this iteration
+    if not entity then
+        goto continue
+    end
+
+	-- Prase map
+	tier = map[1]
+	inputs.tint = adjust_alpha(tint_hex_to_rgb(map[2]), 0.82)
 
 	-- Create explosions. Big ones. The biggest explosions. Make Michael Bay proud!
 	create_explosion(name, inputs)
@@ -194,6 +191,30 @@ for name, tier in pairs(loader_map) do
 			tint = inputs.tint
 		}
 	}
+
+	item = data.raw["item"][name]
+
+	item.pictures = 
+	{
+		{
+			layers =
+			{
+				{
+					filename = inputs.directory.."/graphics/icons/loader-icon-base.png",
+					size = 64,
+					scale = 0.25,
+					mipmap_count = 1,
+				},
+				{
+					filename = inputs.directory.."/graphics/icons/loader-icon-mask.png",
+					size = 64,
+					scale = 0.25,
+					mipmap_count = 1,
+					tint = inputs.tint,
+				}
+			}
+		}
+	}
 	
 	assign_icons(name, inputs)	
 
@@ -207,7 +228,7 @@ for name, tier in pairs(loader_map) do
 		-- Base
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",				
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 0,
 			hr_version = 
@@ -216,14 +237,14 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 0
 			}
 		},
 		-- Mask
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",			
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 0,
 			tint	 = inputs.tint,
@@ -233,7 +254,7 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 0,
 				tint     = inputs.tint,
 			}
@@ -242,7 +263,7 @@ for name, tier in pairs(loader_map) do
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",			
 			draw_as_shadow = true,
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 0,
 			hr_version = 
@@ -252,7 +273,7 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 0,
 			}
 		}
@@ -263,7 +284,7 @@ for name, tier in pairs(loader_map) do
 		-- Base
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",			
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 96,
 			hr_version = 
@@ -272,14 +293,14 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 192
 			}
 		},
 		-- Mask
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",			
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 96,
 			tint	 = inputs.tint,
@@ -289,7 +310,7 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 192,
 				tint     = inputs.tint
 			}
@@ -297,7 +318,7 @@ for name, tier in pairs(loader_map) do
 		-- Shadow
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",			
-			width    = 106,
+			width    = 96,
 			height   = 96,
 			y        = 96,
 			draw_as_shadow = true,
@@ -307,7 +328,7 @@ for name, tier in pairs(loader_map) do
 				height   = 192,
 				priority = "extra-high",
 				scale    = 0.5,
-				width    = 212,
+				width    = 192,
 				y        = 192,
 				draw_as_shadow = true,
 			}
@@ -321,13 +342,13 @@ for name, tier in pairs(loader_map) do
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-back-patch.png",
 			priority = "extra-high",
-			width = 106,
+			width = 96,
 			height = 96,
 			hr_version =
 			{
 				filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-back-patch.png",
 				priority = "extra-high",
-				width = 212,
+				width = 192,
 				height = 192,
 				scale = 0.5
 			}
@@ -341,16 +362,19 @@ for name, tier in pairs(loader_map) do
 		{
 			filename = inputs.directory.."/graphics/entity/loader/loader-structure-front-patch.png",
 			priority = "extra-high",
-			width = 106,
+			width = 96,
 			height = 96,
 			hr_version =
 			{
 				filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-front-patch.png",
 				priority = "extra-high",
-				width = 212,
+				width = 192,
 				height = 192,
 				scale = 0.5
 			}
 		}
 	}
+
+	-- Label to skip to next iteration
+    ::continue::
 end
