@@ -16,19 +16,6 @@ local particle_index =
     ["big"] = "metal-particle-big",
 }
 
--- Converts hex code values to rgb values
-local function tint_hex_to_rgb(hex)
-    hex = hex:gsub("#","")
-    tint = {tonumber("0x"..hex:sub(1,2)), tonumber("0x"..hex:sub(3,4)), tonumber("0x"..hex:sub(5,6))}
-    return tint
-end
-
--- Adjusts alpha values for a given tint
-local function adjust_alpha(tint, alpha)
-    adjusted_tint = {tint[1], tint[2], tint[3], alpha*255}
-    return adjusted_tint
-end
-
 -- Create explosion; assign particles after calling this function
 local function create_explosion(name, inputs)
     -- Inputs expected by this function:
@@ -153,11 +140,15 @@ local inputs =
 
 
 -- Function to reskin loader-1x1 entities
--- This function expects to be pased a table with the entity name as a key, and tint and alpha values as fields, e.g.:
--- {["your-loader-name"] = {"hex_code_of_tint_color", "tint_alpha", "particle_alpha"}}
--- The alpha values are optional.
+-- This function expects to be passed a table with the following format:
+--
+-- {["your-loader-name"] = "color"}}
+--
+-- Color is a 6 or 8 digit hex code. 
+-- If a 6 digit hex code is used, an alpha value of 209 ("D1") will be applied.
+
 function vanillaHD.reskin_1x1_loaders(loader_map)
-	for name, map in pairs(loader_map) do
+	for name, color_hex in pairs(loader_map) do
 		-- Fetch entity
 		entity = data.raw[inputs.type][name]
 
@@ -165,14 +156,17 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		if not entity then
 			goto continue
 		end
-		
-		-- Parse map
-		loader_tint = map[1]
-		loader_alpha = map[2] or 0.82
-		particle_alpha = map[3] or 1
+
+		if #color_hex == 8 then
+			color = color_hex
+			particle_color = color_hex:sub(1,6).."FF"
+		elseif #color_hex == 6 then
+			color = color_hex.."D1"
+			particle_color = color_hex.."FF"
+		end
 
 		-- Set working tint
-		inputs.tint = adjust_alpha(tint_hex_to_rgb(loader_tint), loader_alpha)
+		inputs.tint = util.color(color)
 
 		-- Create explosions. Big ones. The biggest explosions. Make Michael Bay proud!
 		create_explosion(name, inputs)
@@ -180,7 +174,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		-- Create and assign needed particles with appropriate tints
 		for particle, key in pairs(inputs.particles) do 
 			-- Create and assign the particle
-			create_particle(name, inputs.base_entity, particle_index[particle], key, adjust_alpha(inputs.tint, particle_alpha)) 
+			create_particle(name, inputs.base_entity, particle_index[particle], key, util.color(particle_color)) 
 		end
 
 		-- Reskin icons
