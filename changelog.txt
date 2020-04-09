@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.18.2
+Date: 2020.04.09
+  Changes:
+    - Refactored how reskinning is handled internally.
+    - Added support for Krastorio's Space Exploration loader.
+---------------------------------------------------------------------------------------------------
 Version: 0.18.1
 Date: 2020.04.08
   Features:
