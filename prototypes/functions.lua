@@ -216,109 +216,105 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Mask
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",			
-				width    = 96,
-				height   = 96,
-				y        = 0,
-				tint	 = inputs.tint,
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",
+				priority = "extra-high",
+				width = 96,
+				height = 96,
+				y = 0,
+				tint = inputs.tint,
 				hr_version = 
 				{
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-mask.png",
-					height   = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 0,
-					tint     = inputs.tint,
+					width = 192,
+					height = 192,
+					y = 0,
+					tint = inputs.tint,
+					scale = 0.5,
 				}
 			},
 			-- Shadow
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",			
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",	
+				priority = "extra-high",
+				width = 96,
+				height = 96,
+				y = 0,		
 				draw_as_shadow = true,
-				width    = 96,
-				height   = 96,
-				y        = 0,
-				hr_version = 
-				{
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-shadow.png",
-					draw_as_shadow = true,
-					height   = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 0,
+					width = 192,
+					height = 192,
+					y = 0,
+					draw_as_shadow = true,
+					scale = 0.5,
 				}
 			}
 		}
 
-		entity.structure.direction_out.sheets = 
-		{
+		entity.structure.direction_out.sheets = {
 			-- Base
 			{
 				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",			
-				width    = 96,
-				height   = 96,
-				y        = 96,
-				hr_version = 
-				{
+				width = 96,
+				height = 96,
+				y = 96,
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-base.png",
-					height   = 192,
+					height = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 192
+					scale = 0.5,
+					width = 192,
+					y = 192
 				}
 			},
 			-- Mask
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",			
-				width    = 96,
-				height   = 96,
-				y        = 96,
-				tint	 = inputs.tint,
-				hr_version = 
-				{
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",
+				priority = "extra-high",
+				width = 96,
+				height = 96,
+				y = 96,
+				tint = inputs.tint,
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-mask.png",
-					height   = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 192,
-					tint     = inputs.tint
+					width = 192,
+					height = 192,
+					y = 192,
+					tint = inputs.tint,
+					scale = 0.5,
 				}
 			},
 			-- Shadow
 			{
 				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",			
-				width    = 96,
-				height   = 96,
-				y        = 96,
+				priority = "extra-high",
+				width = 96,
+				height = 96,
+				y = 96,
 				draw_as_shadow = true,
-				hr_version = 
-				{
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-shadow.png",
-					height   = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 192,
+					width = 192,
+					height = 192,
+					y = 192,
 					draw_as_shadow = true,
+					scale = 0.5,
 				}
 			}
 		}
 
 		-- Add back flange beneath items on the belt
-		entity.structure.back_patch =
-		{
-			sheet =
-			{
+		entity.structure.back_patch = {
+			sheet = {
 				filename = inputs.directory.."/graphics/entity/loader/loader-structure-back-patch.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
-				hr_version =
-				{
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-back-patch.png",
 					priority = "extra-high",
 					width = 192,
