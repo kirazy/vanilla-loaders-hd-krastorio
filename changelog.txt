@@ -2,16 +2,18 @@
 Version: 0.18.3
 Date: 2020.04.XX
   Changes:
-    - Refactored how tints are handled.
+    - Refactored how tints are handled
+    - General style improvements to code
+    - Renamed to more clearly indicate this is intended for Krastorio 2
 ---------------------------------------------------------------------------------------------------
 Version: 0.18.2
 Date: 2020.04.09
   Changes:
-    - Refactored how reskinning is handled internally.
-    - Added support for Krastorio's Space Exploration loader.
+    - Refactored how reskinning is handled internally
+    - Added support for Krastorio's Space Exploration loader
 ---------------------------------------------------------------------------------------------------
 Version: 0.18.1
 Date: 2020.04.08
   Features:
-    - Initial Release.
-    - Reskins the Krastorio 2 loaders to match vanilla-Factorio underground belts.
+    - Initial Release
+    - Reskins the Krastorio 2 loaders to match vanilla-Factorio underground belts

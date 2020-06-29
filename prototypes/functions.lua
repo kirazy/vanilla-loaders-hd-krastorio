@@ -10,8 +10,7 @@ if not vanillaHD then vanillaHD = {} end
 -- Library functions and tables to be removed when the Reskins Library mod is published
 
 -- Mapping of particles to short name
-local particle_index = 
-{
+local particle_index = {
     ["medium"] = "metal-particle-medium",
     ["big"] = "metal-particle-big",
 }
@@ -128,8 +127,7 @@ end
 -- ###################################################################################
 -- Set basic inputs
 
-local inputs = 
-{
+local inputs = {
 	type = "loader-1x1",
 	icon_size = 64,
 	icon_mipmaps = 1,
@@ -153,9 +151,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity = data.raw[inputs.type][name]
 
 		-- Check if entity exists, if not, skip this iteration
-		if not entity then
-			goto continue
-		end
+		if not entity then goto continue end
 
 		if #color_hex == 8 then
 			color = color_hex
@@ -178,8 +174,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		end
 
 		-- Reskin icons
-		inputs.icon  = 
-		{
+		inputs.icon  = {
 			{
 				icon = inputs.directory.."/graphics/icons/loader-icon-base.png"
 			},
@@ -196,22 +191,20 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity.structure.direction_out.sheet = nil
 
 		-- Set new sheets
-		entity.structure.direction_in.sheets = 
-		{
+		entity.structure.direction_in.sheets = {
 			-- Base
 			{
 				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",				
-				width    = 96,
-				height   = 96,
-				y        = 0,
-				hr_version = 
-				{
+				width = 96,
+				height = 96,
+				y = 0,
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-base.png",
-					height   = 192,
+					height = 192,
 					priority = "extra-high",
-					scale    = 0.5,
-					width    = 192,
-					y        = 0
+					scale = 0.5,
+					width = 192,
+					y = 0
 				}
 			},
 			-- Mask
@@ -222,8 +215,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 				height = 96,
 				y = 0,
 				tint = inputs.tint,
-				hr_version = 
-				{
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-mask.png",
 					priority = "extra-high",
 					width = 192,
@@ -325,16 +317,13 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		}
 
 		-- Add front patch, beneath entities on the tile below
-		entity.structure.front_patch =
-		{
-			sheet =
-			{
+		entity.structure.front_patch = {
+			sheet = {
 				filename = inputs.directory.."/graphics/entity/loader/loader-structure-front-patch.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
-				hr_version =
-				{
+				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-front-patch.png",
 					priority = "extra-high",
 					width = 192,

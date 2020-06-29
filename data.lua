@@ -5,10 +5,9 @@
 
 require("prototypes.functions")
 
-local krastorio_loaders =
-{
-	["kr-loader"] 		   = "ffc340",
-	["kr-fast-loader"] 	   = "e31717",
+local krastorio_loaders = {
+	["kr-loader"] = "ffc340",
+	["kr-fast-loader"] = "e31717",
 	["kr-express-loader"]  = "43c0fa",
 	["kr-advanced-loader"] = "3ade21",
 	["kr-superior-loader"] = "a30bd6",
