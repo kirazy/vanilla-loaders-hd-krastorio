@@ -7,5 +7,5 @@
   "contact": "kirazy@live.com",
   "description": "Reskins the Krastorio 2 loaders to match vanilla-Factorio underground belts. Supports Krastorio 2 with Space Exploration.",
   "dependencies": [	"base >= 0.18.0",
-    "Krastorio2 >=0.9.9"]
+    "Krastorio2"]
 }
