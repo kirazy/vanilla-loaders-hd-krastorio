@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 2020.11.24
+  Features:
+    - Renamed from Vanilla Loaders HD: Krastorio 2 to Vanilla Loaders: Krastorio 2
+  Changes:
+    - Moved mod name and description to locale file for use with Factorio Mod Translations project
+    - Moved to 1.1
+---------------------------------------------------------------------------------------------------
 Version: 0.18.3
 Date: 2020.06.29
   Changes:

@@ -1,6 +1,6 @@
 -- Copyright (c) 2020 Kirazy
 -- Part of Vanilla Loaders HD: Krastorio
---     
+--
 -- See LICENSE.md in the project directory for license information.
 
 -- Initialize function storage.
@@ -61,7 +61,7 @@ local function assign_icons(name, inputs)
     if type(inputs.icon) == "table" then
         -- Create icons that have multiple layers
         if entity then
-            entity.icon = nil        
+            entity.icon = nil
             entity.icons = inputs.icon
         end
 
@@ -70,8 +70,8 @@ local function assign_icons(name, inputs)
             item.icons = inputs.icon
         end
 
-        if explosion then 
-            explosion.icon = nil        
+        if explosion then
+            explosion.icon = nil
             explosion.icons = inputs.icon
         end
 
@@ -87,12 +87,12 @@ local function assign_icons(name, inputs)
         end
 
         if item then
-            item.icons = nil        
+            item.icons = nil
             item.icon = inputs.icon
         end
 
         if explosion then
-            explosion.icons = nil        
+            explosion.icons = nil
             explosion.icon = inputs.icon
         end
 
@@ -105,19 +105,19 @@ local function assign_icons(name, inputs)
     -- Make assignments common to all cases
     if entity then
         entity.icon_size = inputs.icon_size
-        entity.icon_mipmaps = inputs.icon_mipmaps          
+        entity.icon_mipmaps = inputs.icon_mipmaps
     end
 
     if item then
         item.icon_size = inputs.icon_size
-        item.icon_mipmaps = inputs.icon_mipmaps 
+        item.icon_mipmaps = inputs.icon_mipmaps
     end
 
     if explosion then
         explosion.icon_size = inputs.icon_size
         explosion.icon_mipmaps = inputs.icon_mipmaps
     end
-    
+
     if remnant then
         remnant.icon_size = inputs.icon_size
         remnant.icon_mipmaps = inputs.icon_mipmaps
@@ -142,7 +142,7 @@ local inputs = {
 --
 -- {["your-loader-name"] = "color"}}
 --
--- Color is a 6 or 8 digit hex code. 
+-- Color is a 6 or 8 digit hex code.
 -- If a 6 digit hex code is used, an alpha value of 209 ("D1") will be applied.
 
 function vanillaHD.reskin_1x1_loaders(loader_map)
@@ -166,11 +166,11 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 
 		-- Create explosions. Big ones. The biggest explosions. Make Michael Bay proud!
 		create_explosion(name, inputs)
-			
+
 		-- Create and assign needed particles with appropriate tints
-		for particle, key in pairs(inputs.particles) do 
+		for particle, key in pairs(inputs.particles) do
 			-- Create and assign the particle
-			create_particle(name, inputs.base_entity, particle_index[particle], key, util.color(particle_color)) 
+			create_particle(name, inputs.base_entity, particle_index[particle], key, util.color(particle_color))
 		end
 
 		-- Reskin icons
@@ -183,8 +183,8 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 				tint = inputs.tint
 			}
 		}
-	
-		assign_icons(name, inputs)	
+
+		assign_icons(name, inputs)
 
 		-- Reskin entity, clearing existing sheet
 		entity.structure.direction_in.sheet = nil
@@ -194,7 +194,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity.structure.direction_in.sheets = {
 			-- Base
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",				
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",
 				width = 96,
 				height = 96,
 				y = 0,
@@ -227,11 +227,11 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Shadow
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",	
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
-				y = 0,		
+				y = 0,
 				draw_as_shadow = true,
 				hr_version = {
 					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-shadow.png",
@@ -248,7 +248,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity.structure.direction_out.sheets = {
 			-- Base
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",			
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",
 				width = 96,
 				height = 96,
 				y = 96,
@@ -281,7 +281,7 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Shadow
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",			
+				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
