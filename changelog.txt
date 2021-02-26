@@ -3,6 +3,7 @@ Version: 1.1.1
 Date: 2021.02.26
   Changes:
     - Images are now losslessly compressed, instead of lossy; there is a modest increase in filesize
+    - Loader icon is now mipmapped
   Locale:
     - Fixed that English locale was not contained with the `en` folder
 ---------------------------------------------------------------------------------------------------

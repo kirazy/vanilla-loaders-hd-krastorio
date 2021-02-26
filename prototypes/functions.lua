@@ -130,7 +130,7 @@ end
 local inputs = {
 	type = "loader-1x1",
 	icon_size = 64,
-	icon_mipmaps = 1,
+	icon_mipmaps = 4,
 	base_entity = "splitter",
 	particles = {["big"] = 4, ["medium"] = 1},
 	directory = "__vanilla-loaders-hd-krastorio__",
