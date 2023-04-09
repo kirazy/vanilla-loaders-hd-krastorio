@@ -1,10 +1,12 @@
 {
   "name": "vanilla-loaders-hd-krastorio",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "factorio_version": "1.1",
   "title": "Vanilla Loaders: Krastorio 2",
   "author": "Kirazy",
   "contact": "kirazy@live.com",
-  "dependencies": [	"base",
-    "Krastorio2"]
+  "dependencies": [
+    "base",
+    "Krastorio2"
+  ]
 }

@@ -11,117 +11,117 @@ if not vanillaHD then vanillaHD = {} end
 
 -- Mapping of particles to short name
 local particle_index = {
-    ["medium"] = "metal-particle-medium",
-    ["big"] = "metal-particle-big",
+	["medium"] = "metal-particle-medium",
+	["big"] = "metal-particle-big",
 }
 
 -- Create explosion; assign particles after calling this function
 local function create_explosion(name, inputs)
-    -- Inputs expected by this function:
-    -- base_entity - Entity to copy explosion prototype from
-    -- type        - Entity type
+	-- Inputs expected by this function:
+	-- base_entity - Entity to copy explosion prototype from
+	-- type        - Entity type
 
-    -- Copy explosion prototype
-    local explosion = table.deepcopy(data.raw["explosion"][inputs.base_entity.."-explosion"])
-    explosion.name = name.."-explosion"
-    data:extend({explosion})
+	-- Copy explosion prototype
+	local explosion = table.deepcopy(data.raw["explosion"][inputs.base_entity .. "-explosion"])
+	explosion.name = name .. "-explosion"
+	data:extend({ explosion })
 
-    -- Assign explosion to originating entity
-    data.raw[inputs.type][name]["dying_explosion"] = explosion.name
+	-- Assign explosion to originating entity
+	data.raw[inputs.type][name]["dying_explosion"] = explosion.name
 end
 
 -- Create tinted particle
 local function create_particle(name, base_entity, base_particle, key, tint)
-    -- Copy the particle prototype
-    local particle = table.deepcopy(data.raw["optimized-particle"][base_entity.."-"..base_particle])
-    particle.name = name.."-"..base_particle.."-tinted"
-    particle.pictures.sheet.tint = tint
-    particle.pictures.sheet.hr_version.tint = tint
-    data:extend({particle})
+	-- Copy the particle prototype
+	local particle = table.deepcopy(data.raw["optimized-particle"][base_entity .. "-" .. base_particle])
+	particle.name = name .. "-" .. base_particle .. "-tinted"
+	particle.pictures.sheet.tint = tint
+	particle.pictures.sheet.hr_version.tint = tint
+	data:extend({ particle })
 
-    -- Assign particle to originating explosion
-    data.raw["explosion"][name.."-explosion"]["created_effect"]["action_delivery"]["target_effects"][key].particle_name = particle.name
+	-- Assign particle to originating explosion
+	data.raw["explosion"][name .. "-explosion"]["created_effect"]["action_delivery"]["target_effects"][key].particle_name = particle.name
 end
 
 -- Handle icon assignment
 local function assign_icons(name, inputs)
-    -- Inputs required by this function
-    -- type            - Entity type
-    -- icon            - Table or string defining icon
-    -- icon_size       - Pixel size of icons
-    -- icon_mipmaps    - Number of mipmaps present in the icon image file
+	-- Inputs required by this function
+	-- type            - Entity type
+	-- icon            - Table or string defining icon
+	-- icon_size       - Pixel size of icons
+	-- icon_mipmaps    - Number of mipmaps present in the icon image file
 
-    -- Initialize paths
-    local entity = data.raw[inputs.type][name]
-    local item = data.raw["item"][name]
-    local explosion = data.raw["explosion"][name.."-explosion"]
-    local remnant = data.raw["corpse"][name.."-remnants"]
+	-- Initialize paths
+	local entity = data.raw[inputs.type][name]
+	local item = data.raw["item"][name]
+	local explosion = data.raw["explosion"][name .. "-explosion"]
+	local remnant = data.raw["corpse"][name .. "-remnants"]
 
-    -- Check whether icon or icons, ensure the key we're not using is erased
-    if type(inputs.icon) == "table" then
-        -- Create icons that have multiple layers
-        if entity then
-            entity.icon = nil
-            entity.icons = inputs.icon
-        end
+	-- Check whether icon or icons, ensure the key we're not using is erased
+	if type(inputs.icon) == "table" then
+		-- Create icons that have multiple layers
+		if entity then
+			entity.icon = nil
+			entity.icons = inputs.icon
+		end
 
-        if item then
-            item.icon = nil
-            item.icons = inputs.icon
-        end
+		if item then
+			item.icon = nil
+			item.icons = inputs.icon
+		end
 
-        if explosion then
-            explosion.icon = nil
-            explosion.icons = inputs.icon
-        end
+		if explosion then
+			explosion.icon = nil
+			explosion.icons = inputs.icon
+		end
 
-        if remnant then
-            remnant.icon = nil
-            remnant.icons = inputs.icon
-        end
-    else
-        -- Create icons that do not have multiple layers
-        if entity then
-            entity.icons = nil
-            entity.icon = inputs.icon
-        end
+		if remnant then
+			remnant.icon = nil
+			remnant.icons = inputs.icon
+		end
+	else
+		-- Create icons that do not have multiple layers
+		if entity then
+			entity.icons = nil
+			entity.icon = inputs.icon
+		end
 
-        if item then
-            item.icons = nil
-            item.icon = inputs.icon
-        end
+		if item then
+			item.icons = nil
+			item.icon = inputs.icon
+		end
 
-        if explosion then
-            explosion.icons = nil
-            explosion.icon = inputs.icon
-        end
+		if explosion then
+			explosion.icons = nil
+			explosion.icon = inputs.icon
+		end
 
-        if remnant then
-            remnant.icons = nil
-            remnant.icon = inputs.icon
-        end
-    end
+		if remnant then
+			remnant.icons = nil
+			remnant.icon = inputs.icon
+		end
+	end
 
-    -- Make assignments common to all cases
-    if entity then
-        entity.icon_size = inputs.icon_size
-        entity.icon_mipmaps = inputs.icon_mipmaps
-    end
+	-- Make assignments common to all cases
+	if entity then
+		entity.icon_size = inputs.icon_size
+		entity.icon_mipmaps = inputs.icon_mipmaps
+	end
 
-    if item then
-        item.icon_size = inputs.icon_size
-        item.icon_mipmaps = inputs.icon_mipmaps
-    end
+	if item then
+		item.icon_size = inputs.icon_size
+		item.icon_mipmaps = inputs.icon_mipmaps
+	end
 
-    if explosion then
-        explosion.icon_size = inputs.icon_size
-        explosion.icon_mipmaps = inputs.icon_mipmaps
-    end
+	if explosion then
+		explosion.icon_size = inputs.icon_size
+		explosion.icon_mipmaps = inputs.icon_mipmaps
+	end
 
-    if remnant then
-        remnant.icon_size = inputs.icon_size
-        remnant.icon_mipmaps = inputs.icon_mipmaps
-    end
+	if remnant then
+		remnant.icon_size = inputs.icon_size
+		remnant.icon_mipmaps = inputs.icon_mipmaps
+	end
 end
 
 -- ###################################################################################
@@ -132,7 +132,7 @@ local inputs = {
 	icon_size = 64,
 	icon_mipmaps = 4,
 	base_entity = "splitter",
-	particles = {["big"] = 4, ["medium"] = 1},
+	particles = { ["big"] = 4,["medium"] = 1 },
 	directory = "__vanilla-loaders-hd-krastorio__",
 }
 
@@ -155,10 +155,10 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 
 		if #color_hex == 8 then
 			color = color_hex
-			particle_color = color_hex:sub(1,6).."FF"
+			particle_color = color_hex:sub(1, 6) .. "FF"
 		elseif #color_hex == 6 then
-			color = color_hex.."D1"
-			particle_color = color_hex.."FF"
+			color = color_hex .. "D1"
+			particle_color = color_hex .. "FF"
 		end
 
 		-- Set working tint
@@ -174,12 +174,12 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		end
 
 		-- Reskin icons
-		inputs.icon  = {
+		inputs.icon = {
 			{
-				icon = inputs.directory.."/graphics/icons/loader-icon-base.png"
+				icon = inputs.directory .. "/graphics/icons/loader-icon-base.png"
 			},
 			{
-				icon = inputs.directory.."/graphics/icons/loader-icon-mask.png",
+				icon = inputs.directory .. "/graphics/icons/loader-icon-mask.png",
 				tint = inputs.tint
 			}
 		}
@@ -194,12 +194,12 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity.structure.direction_in.sheets = {
 			-- Base
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-base.png",
 				width = 96,
 				height = 96,
 				y = 0,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-base.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-base.png",
 					height = 192,
 					priority = "extra-high",
 					scale = 0.5,
@@ -209,14 +209,14 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Mask
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-mask.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				y = 0,
 				tint = inputs.tint,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-mask.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-mask.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -227,14 +227,14 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Shadow
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-shadow.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				y = 0,
 				draw_as_shadow = true,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-shadow.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-shadow.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -248,12 +248,12 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		entity.structure.direction_out.sheets = {
 			-- Base
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-base.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-base.png",
 				width = 96,
 				height = 96,
 				y = 96,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-base.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-base.png",
 					height = 192,
 					priority = "extra-high",
 					scale = 0.5,
@@ -263,14 +263,14 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Mask
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-mask.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-mask.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				y = 96,
 				tint = inputs.tint,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-mask.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-mask.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -281,14 +281,14 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 			},
 			-- Shadow
 			{
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-shadow.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-shadow.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				y = 96,
 				draw_as_shadow = true,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-shadow.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-shadow.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -302,12 +302,12 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		-- Add back flange beneath items on the belt
 		entity.structure.back_patch = {
 			sheet = {
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-back-patch.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-back-patch.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-back-patch.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-back-patch.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -319,12 +319,12 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		-- Add front patch, beneath entities on the tile below
 		entity.structure.front_patch = {
 			sheet = {
-				filename = inputs.directory.."/graphics/entity/loader/loader-structure-front-patch.png",
+				filename = inputs.directory .. "/graphics/entity/loader/loader-structure-front-patch.png",
 				priority = "extra-high",
 				width = 96,
 				height = 96,
 				hr_version = {
-					filename = inputs.directory.."/graphics/entity/loader/hr-loader-structure-front-patch.png",
+					filename = inputs.directory .. "/graphics/entity/loader/hr-loader-structure-front-patch.png",
 					priority = "extra-high",
 					width = 192,
 					height = 192,
@@ -337,3 +337,4 @@ function vanillaHD.reskin_1x1_loaders(loader_map)
 		::continue::
 	end
 end
+
